@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-
 import { Card, FormField, Loader } from '../components';
+import './toast.css'
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
@@ -38,7 +38,14 @@ const Home = () => {
         setAllPosts(result.data.reverse());
       }
     } catch (err) {
-      alert(err);
+      saberToast.error({
+        title: "Error Occurred",
+        text: err,
+        delay: 200,
+        duration: 2600,
+        rtl: true,
+        position: "bottom-right"
+      })
     } finally {
       setLoading(false);
     }

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { saberToast } from '../toast'
 import { preview } from '../assets';
 import { getRandomPrompt } from '../utils';
 import { FormField, Loader } from '../components';
+import './toast.css'
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -41,12 +42,26 @@ const CreatePost = () => {
         const data = await response.json();
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
       } catch (err) {
-        alert(err);
+        saberToast.error({
+          title: "Error Occurred",
+          text: err,
+          delay: 200,
+          duration: 2600,
+          rtl: true,
+          position: "bottom-right"
+        })
       } finally {
         setGeneratingImg(false);
       }
     } else {
-      alert('Please provide proper prompt');
+      saberToast.info({
+        title: "Fill in the Blanks",
+        text: "Please provide proper prompt",
+        delay: 200,
+        duration: 2600,
+        rtl: true,
+        position: "bottom-right"
+      })
     }
   };
 
@@ -65,15 +80,36 @@ const CreatePost = () => {
         });
 
         await response.json();
-        alert('Success');
+        saberToast.success({
+          title: "Success!",
+          text: "Your image has been published",
+          delay: 200,
+          duration: 2600,
+          rtl: true,
+          position: "bottom-right"
+        })
         navigate('/');
       } catch (err) {
-        alert(err);
+        saberToast.error({
+          title: "Error Occurred",
+          text: err,
+          delay: 200,
+          duration: 2600,
+          rtl: true,
+          position: "bottom-right"
+        });
       } finally {
         setLoading(false);
       }
     } else {
-      alert('Please generate an image with proper details');
+      saberToast.error({
+        title: "Syntax Error",
+        text: "Please generate an image with proper details",
+        delay: 200,
+        duration: 2600,
+        rtl: true,
+        position: "bottom-right"
+      })
     }
   };
 
