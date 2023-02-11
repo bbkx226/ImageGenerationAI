@@ -81,7 +81,7 @@ const CreatePost = () => {
 
         await response.json();
         saberToast.success({
-          title: "Success!",
+          title: "Success",
           text: "Your image has been published",
           delay: 200,
           duration: 2600,
