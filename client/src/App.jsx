@@ -4,6 +4,7 @@ import { logo } from './assets';
 import { Home, CreatePost } from './page';
 
 const App = () => (
+  // BrowserRouter is a component provided by the react-router-dom library that allows you to use client-side routing in your React application. It provides a way to map URLs to different components that should be rendered when the URL matches a certain pattern.
   <BrowserRouter>
     <header className="w-full flex justify-between items-center bg-white sm:px-8 px-4 border-b border-b-[#e6ebf4]">
       <a href='https://www.bbkx.live'><img src={logo} alt="logo" className="w-32 object-contain" /></a>
